@@ -1,0 +1,11 @@
+Strategy: Combined Synchronization and Deadlock Avoidance
+
+A fixed hierarchy is assigned to the three resource types:
+
+Printer (0) < Scanner (1) < Disk (2)
+
+Whenever a process requires two resources, it obtains them according to this predefined order. Once its work is finished, the resources are released in the reverse sequence. As a result, a process can never hold a resource with a higher priority and then wait for one with a lower priority.
+
+Following the same ordering rule across all five processes prevents the formation of a circular wait, independent of how the processes happen to be scheduled or interleaved.
+
+The execution was tested using **2 work cycles for each process**, giving a total of **10 task instances**. All processes successfully completed their assigned cycles without getting stuck. The resource counts also remained within the available limits, with the pipe-based counting semaphores ensuring that no resource could be allocated beyond its number of instances. The run therefore demonstrates that the synchronization mechanism and resource-ordering strategy work together to avoid deadlock while still allowing the processes to execute concurrently.

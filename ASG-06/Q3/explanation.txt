@@ -1,0 +1,27 @@
+### Deadlock Prevention Using Resource Hierarchy
+
+#### How the Deadlock Occurs Without an Ordering Rule
+
+In the original implementation, the two processes acquire the shared locks in different orders. Process A first obtains **Lock1** and then tries to acquire **Lock2**, whereas Process B does the opposite by taking **Lock2** first and subsequently requesting **Lock1**.
+
+The delay between the two acquisitions makes the situation especially likely. Both processes get their first lock before either one has a chance to obtain the second. At that point, A is holding the resource required by B, while B is holding the resource required by A. Neither process can proceed because each is waiting for the other to release a lock.
+
+This creates a cycle in the resource dependency graph:
+
+**A → B → A**
+
+Since the locks are mutually exclusive and the processes retain their first lock while waiting for the next one, the system can remain stuck indefinitely.
+
+#### Preventing the Cycle with Resource Ordering
+
+A simple way to prevent this situation is to establish a fixed order for acquiring resources. For example, suppose we define:
+
+**Lock1 < Lock2**
+
+Every process that needs both locks must then acquire **Lock1 before Lock2**. A process is never allowed to request Lock1 after it has already obtained Lock2.
+
+This common ordering removes the possibility of contradictory acquisition sequences. Even if multiple processes execute at the same time, their lock requests always move in the same direction through the hierarchy. Therefore, a process cannot be waiting for a lower-ranked resource while another process is waiting for a higher-ranked resource in a way that forms a cycle.
+
+#### Connection with Coffman’s Deadlock Conditions
+
+According to Coffman’s conditions, deadlock can occur only when all four of the following property
