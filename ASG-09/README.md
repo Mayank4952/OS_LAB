@@ -10,7 +10,7 @@ This repository contains implementations for three xv6 virtual-memory problems. 
 | `Q2` | Implementing lazy memory allocation, page-fault handling, and the `getfaults()` system call | `faulttest.c` | 5 page faults for 5 accessed pages; an invalid memory access terminates only the child process |
 | `Q3t` | Simulating FIFO and LRU page-replacement algorithms | `pagerepl.c` | With 3 frames, FIFO produces 15 faults and LRU produces 12 |
 
-The repository also includes [`REPORT.md`](REPORT.md), which summarizes the implementation details, testing procedures, and results for all three questions.
+The repository also includes [`brief_report.md`](brief_report.md), which summarizes the implementation details, testing procedures, and results for all three questions.
 
 ## Repository Structure
 
